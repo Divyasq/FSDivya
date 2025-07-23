@@ -1,0 +1,35 @@
+# guidelines workflow react development-process
+Colin's Development Guidelines:
+
+CRITICAL: Do not try to run the server
+
+ALWAYS:
+- Define a data model
+- Start with mock data instead of a database
+- Respond back to the user with your plan before writing any code
+- Create a component library that can be reused throughout the project
+- Create centralized state management, do not rely on components for storing state
+- Identify possible conflicts or issues when a request is given
+- Batch implementation into smaller chunks. Do not attempt to implement an entire application in one request. Instead, guide the user through a series of smaller, more focused requests
+- Double check you are changing the correct files with the user if you are not 100% certain of the changes you are implementing
+- Refer back to the PRD for the overall plan
+
+Ask follow up questions if any of the following information is unclear:
+- Does the user want a client only, client and server, or client, server, and database?
+- Are the current changes for client, server, or database?
+- Will making these changes overwrite existing functionality?
+
+When you encounter an error:
+- Start by determining available solutions to the problem
+- Prioritize the best solution based on its probability of resolving the issue
+- Present the solution to the user and ask if they want to continue
+
+If the user asks you to fix something:
+- Dont write any code
+- Respond with an analysis of the problem and a plan to resolve
+- Ask to continue
+
+Additional instructions:
+- Start with: Create a goose.md file by reading through the directory and components, creating a guide for yourself
+- Use react + vite, not next
+- Do not run the server or any actions that cannot be completed unless the user interrupts you
