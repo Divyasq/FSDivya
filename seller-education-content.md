@@ -1,0 +1,408 @@
+# Seller Education Content Documentation
+
+## Overview
+This document contains all the educational content for sellers in the Square reporting application. The content is organized into three main modules covering sales metrics, payment timing differences, and navigation techniques.
+
+---
+
+## Module 1: Better Sales Metrics Education
+
+**Duration:** 20 minutes  
+**Difficulty:** Beginner  
+**Description:** Understanding how Gross Sales, Net Sales, and Total Line Items are calculated and when they are reported
+
+### Core Metric Definitions
+
+#### Gross Sales
+- **Formula:** Price + Service Charges
+- **Description:** The total amount charged to the customer before any deductions
+- **When Reported:** When payment is completed
+- **Example:** $100 item + $5 service charge = $105 Gross Sales
+
+#### Net Sales
+- **Formula:** Gross Sales - Discounts - Comps - Returns
+- **Description:** Sales amount after deducting discounts, comps, and returns
+- **When Reported:** When payment is completed
+- **Example:** $105 Gross - $10 discount = $95 Net Sales
+
+#### Total Line Item
+- **Formula:** Net Sales - Partial Refunds + Tax
+- **Description:** Final amount with tax adjustments
+- **When Reported:** When payment is completed
+
+### Section 1: Sales Metrics Definitions
+**Content:** Learn the fundamental definitions and formulas for key sales metrics used in Square reporting.
+
+**Example: Core Sales Metrics**
+- **Scenario:** Understanding the relationship between different sales metrics
+- **Calculation Steps:**
+  1. Gross Sales = Price + Service Charges (Total amount before deductions)
+  2. Net Sales = Gross Sales - Discounts - Comps - Returns (Amount after deductions)
+  3. Total Line Item = Net Sales - Partial Refunds + Tax (Final amount with tax adjustments)
+- **Result:** These metrics build upon each other in sequence
+
+### Section 2: Gross Sales
+**Content:** Gross Sales = Price + Service Charges. This represents the total amount charged to customers before any deductions. It includes the base price of items plus any service charges.
+
+**Example: Basic Gross Sales**
+- **Scenario:** Customer orders a $25 meal with $3 delivery fee
+- **Calculation Steps:**
+  1. Item Price: $25.00 (Base price of the meal)
+  2. Service Charges: $3.00 (Delivery fee)
+  3. Gross Sales: $25.00 + $3.00 = $28.00 (Total before deductions)
+- **Result:** $28.00
+
+**Interactive Calculator Available:**
+- Item Price input (default: $25.00)
+- Service Charges input (default: $3.00)
+- Automatic Gross Sales calculation
+
+### Section 3: Net Sales
+**Content:** Net Sales = Gross Sales - Discounts - Comps - Returns. This is calculated by taking Gross Sales and subtracting discounts, comps (complimentary items), and returns.
+
+**Example: Net Sales with Discount**
+- **Scenario:** Customer has $28 gross sales with a $5 discount applied
+- **Calculation Steps:**
+  1. Gross Sales: $28.00 (Starting amount)
+  2. Discounts: -$5.00 (Applied discount)
+  3. Comps: $0.00 (No complimentary items)
+  4. Returns: $0.00 (No returns)
+  5. Net Sales: $28.00 - $5.00 = $23.00 (Final net amount)
+- **Result:** $23.00
+
+**Interactive Calculator Available:**
+- Gross Sales input (default: $28.00)
+- Discounts input (default: $5.00)
+- Comps input (default: $0.00)
+- Returns input (default: $0.00)
+- Automatic Net Sales calculation
+
+### Section 4: Total Line Item
+**Content:** Total Line Item = Net Sales - Partial Refunds + Tax. This is the final amount calculated as Net Sales minus partial refunds (refunds by amount) plus tax.
+
+**Example: Complete Calculation**
+- **Scenario:** Customer with $23 net sales, $2 partial refund, and $1.68 tax
+- **Calculation Steps:**
+  1. Net Sales: $23.00 (After discounts and comps)
+  2. Partial Refunds: -$2.00 (Refund by amount)
+  3. Tax: +$1.68 (Applied tax)
+  4. Total Line Item: $23.00 - $2.00 + $1.68 = $22.68 (Final amount)
+- **Result:** $22.68
+
+**Interactive Calculator Available:**
+- Net Sales input (default: $23.00)
+- Partial Refunds input (default: $2.00)
+- Tax input (default: $1.68)
+- Automatic Total Line Item calculation
+
+### Section 5: When Metrics Are Reported
+**Content:** Understanding when sales metrics are calculated and reported in your Square dashboard.
+
+**Example: Sales Metrics Reporting**
+- **Scenario:** All sales metrics follow the same reporting schedule
+- **Timing:**
+  1. Gross Sales: Reported when payment is completed (Payment completion triggers reporting)
+  2. Net Sales: Reported when payment is completed (Same timing as Gross Sales)
+  3. Total Line Item: Reported when payment is completed (Same timing as other sales metrics)
+- **Result:** All sales metrics are reported simultaneously when payment completes
+
+### Frequently Asked Questions
+
+**Q: When are Gross/Net Sales reported?**
+A: All sales metrics (Gross Sales, Net Sales, Total Line Item) are calculated and reported when the payment is completed.
+- Examples: Payment completion triggers metric calculation, Pending payments do not affect sales metrics, All sales metrics use the same reporting time
+
+**Q: What counts as service charges in Gross Sales?**
+A: Service charges include delivery fees, processing fees, convenience charges, and any additional fees beyond the base item price.
+- Examples: Delivery fee: $3.00, Processing fee: $1.50, Convenience charge: $2.00
+
+**Q: What are partial refunds in the Total Line Item calculation?**
+A: Partial refunds are refunds by amount (not full item returns). They reduce the Total Line Item but not the Net Sales.
+- Examples: $5 refund on a $20 item, Refund for damaged portion of order, Customer dissatisfaction adjustment
+
+**Q: What are comps in the Net Sales calculation?**
+A: Comps (complimentary items) are free items given to customers, which reduce the Net Sales amount.
+- Examples: Free appetizer, Complimentary drink, Manager comp for service issue
+
+---
+
+## Module 2: Understanding Sales and Payments Metrics Differences
+
+**Duration:** 30 minutes  
+**Difficulty:** Intermediate  
+**Description:** Learn why sales and payment metrics can differ and when each is reported
+
+### Section 1: When Sales vs Payments Are Reported
+**Content:** Understanding the fundamental difference in timing between sales and payment reporting.
+
+**Example: Sales vs Payments Reporting Timeline**
+- **Scenario:** Understanding when each metric is recorded
+- **Timing:**
+  1. Sales Metrics: When payment is completed (Reported when payment finishes processing successfully)
+  2. Payment Metrics: When payment is initiated (Reported when payment starts with specific exceptions)
+- **Result:** This timing difference creates discrepancies in your reports
+
+### Section 2: General Payment Scenarios
+
+#### Sale with Single Payment
+- **Scenario:** Standard transaction with one payment method
+- **Timing:**
+  - Sale Timing: Payment completed time (When the payment finishes processing)
+  - Payment Timing: When customer presents payment method (except Gift Cards: payment complete, Bank Transfers: payment completed time)
+- **Result:** Most common scenario with minimal timing differences
+
+#### Credit Card Processing Delay
+- **Scenario:** Unintentional delays due to server-side processing issues
+- **Timing:**
+  - Sale Timing: Payment completed time (When payment actually completes despite delays)
+  - Payment Timing: When customer presents payment method (When customer initially presented payment method)
+- **Result:** Network latency or server delays can cause timing discrepancies
+
+#### Cash Payment System Issue
+- **Scenario:** Internal system failure affecting payment record timing
+- **Timing:**
+  - Sale Timing: Payment completed time (When cash payment is actually completed)
+  - Payment Timing: When customer presents payment method (when system recovers) (When system failure is resolved and record is created)
+- **Result:** System failures can create gaps between sale and payment recording
+
+### Section 3: Edge Cases and Special Payment Methods
+
+#### Pre-Authorization
+- **Scenario:** Payments are reported when customer presents payment method, sales when payment completes
+- **Timing:**
+  - Sale Timing: Payment completed time (When payment is captured and sale completes)
+  - Payment Timing: When customer presents payment method (When customer presents card for authorization, except Gift Cards: payment complete, Bank Transfers: payment completed time)
+- **Result:** May show differences when sales fall outside of midnight windows
+
+#### Tipping on Paper Receipts
+- **Scenario:** Open orders where payment method is presented after order creation
+- **Timing:**
+  - Sale Timing: When order is created (Sale recorded when order is initially created)
+  - Payment Timing: When customer presents payment method (When customer presents card for payment, except Gift Cards: payment complete, Bank Transfers: payment completed time)
+- **Result:** Used for paper receipts and open orders where payment happens after order creation
+
+#### Offline Payments
+- **Scenario:** Payments taken offline and synced later
+- **Timing:**
+  - Sale Timing: Bill/Order completed_at time (When seller took the payment offline)
+  - Payment Timing: Auth time when payment comes back online (When offline payment syncs back to system)
+- **Result:** Offline mode creates timing gaps when payments sync back online
+
+#### ACH Payments
+- **Scenario:** Bank transfer payments with processing delays
+- **Timing:**
+  - Sale Timing: Payment completed/Capture time (When ACH payment is completed)
+  - Payment Timing: Payment completed/Capture time (Same as sale timing for ACH)
+- **Result:** Both metrics align for ACH payments due to processing requirements
+
+### Section 4: Complex Payment Scenarios
+
+#### Sale with Split Payments
+- **Scenario:** Multiple payment methods for single sale
+- **Timing:**
+  - Sale Timing: Last completed payment (Sale timing depends on when final payment completes)
+  - Payment Timing: When customer presents payment method (Each payment reports when customer presents payment method, except Gift Cards: payment complete, Bank Transfers: bankTransaction.completedAt)
+- **Result:** Sale timing depends on final payment completion
+
+#### Sale with Multiple Payments via Invoice
+- **Scenario:** Invoice paid in multiple installments
+- **Timing:**
+  - Sale Timing: When final payment is complete (Sale not recorded until invoice is fully paid)
+  - Payment Timing: When customer presents payment method (Each payment reports when customer presents payment method, Gift Cards: when completed, Bank Transfers: when completed)
+- **Result:** Sale not recorded until invoice is fully paid
+
+#### House Account
+- **Scenario:** Credit account payments
+- **Timing:**
+  - Sale Timing: When order is placed (Sale recorded immediately when order is created)
+  - Payment Timing: As House account balances are paid (Payments recorded when account is settled)
+- **Result:** Sale recorded immediately, payments recorded when account is settled
+
+### Section 5: Understanding Bank Transfers
+**Content:** Deep dive into how bank transfers affect sales and payment reporting.
+
+**Example: Bank Transfer Timing Rules**
+- **Scenario:** How bank transfers are handled differently from other payment methods
+- **Comparison:**
+  1. Standard Payments: When customer presents payment method (Most payments report when customer presents payment method)
+  2. Bank Transfers: Payment completed time (Bank transfers report when completed, aligning with sales timing)
+  3. Why Different: Processing requirements (Bank transfers require completion confirmation before reporting)
+- **Result:** Bank transfers align more closely with sales timing than other payment methods
+
+### Frequently Asked Questions
+
+**Q: Why do my sales and payment totals not match?**
+A: Sales are reported when payments complete, while payments are reported when initiated. Processing delays, offline payments, and different payment methods can create timing differences.
+- Examples: Credit card processing delays, Offline payments syncing later, Pre-authorization vs capture timing, System failures affecting timing
+
+**Q: How do Square Gift Cards affect timing?**
+A: For Square Gift Cards, payments are reported at the payment complete time instead of the standard payment created time.
+- Examples: Gift card payments use capture intent timing, Different from standard payment created time
+
+**Q: What happens with Bank Transfers?**
+A: Bank transfers report payments at the payment completed time, aligning more closely with sales timing. This is different from most other payment methods.
+- Examples: Bank transfers align payment and sales timing, Use bankTransaction.completedAt for split payments
+
+**Q: What is the difference between Pre-Auth and Tipping on Paper Receipts?**
+A: Pre-Auth is when payments are reported when customer presents payment method and sales when payment completes, which may show differences when sales fall outside midnight windows. Tipping on Paper Receipts is for open orders where sales are reported when order is created and payments when customer presents payment method.
+- Examples: Pre-Auth: payment timing vs sales timing differences, Paper Receipts: order creation vs payment presentation, Both create intentional timing differences for different business needs
+
+**Q: How do offline payments affect reporting?**
+A: Offline payments create timing gaps because sales are recorded when taken offline, but payments are recorded when they sync back online.
+- Examples: Sale: when payment taken offline, Payment: when synced back online, Can create significant timing differences
+
+**Q: How do split payments affect sales timing?**
+A: For split payments, the sale is reported when the last payment completes, while each individual payment is reported at its own timing.
+- Examples: Sale waits for final payment, Each payment reports individually, Can create timing spreads across multiple payments
+
+**Q: Why do House Account sales and payments have different timing?**
+A: House Account sales are recorded immediately when the order is placed (extending credit), while payments are recorded when the account balance is actually paid.
+- Examples: Sale: immediate when order placed, Payment: when account settled, Reflects credit extension vs payment collection
+
+---
+
+## Module 3: Self-Serve Navigation: Sales Summary to Transactions
+
+**Duration:** 15 minutes  
+**Difficulty:** Beginner  
+**Description:** Learn how to navigate from summary numbers to detailed transaction data
+
+### Section 1: Understanding the Navigation Flow
+**Content:** Learn how to drill down from high-level sales summary data to individual transaction details.
+
+**Example: Sales Summary to Transaction Details**
+- **Scenario:** Following the data trail from summary to details
+- **Navigation Steps:**
+  1. Sales Summary: High-level aggregated data (Total sales, payment counts, averages)
+  2. Filtered Reports: Filtered by time, payment method, etc. (Narrow down to specific criteria)
+  3. Transaction Details: Individual transaction records (Complete transaction information)
+- **Result:** Navigate from summary metrics to individual transaction details
+
+### Section 2: Drill-Down Techniques
+**Content:** Master the techniques for drilling down from summary data to transaction-level details.
+
+#### Time-Based Drill Down
+- **Scenario:** Narrowing down by time periods
+- **Steps:**
+  1. Monthly Summary: Total sales for the month (Start with monthly aggregated data)
+  2. Daily Breakdown: Sales by day within the month (Drill down to daily level)
+  3. Hourly Analysis: Sales by hour for specific days (Further drill down to hourly data)
+  4. Transaction List: Individual transactions (Final level: individual transactions)
+- **Result:** Progressive narrowing from month to individual transactions
+
+#### Payment Method Drill Down
+- **Scenario:** Analyzing by payment method
+- **Steps:**
+  1. Total Sales: All payment methods combined (Starting point: total sales)
+  2. By Payment Method: Credit cards, cash, etc. (Break down by payment method)
+  3. Specific Method: Focus on one payment method (Drill into specific payment method)
+  4. Transaction Details: Individual transactions for that method (See individual transactions)
+- **Result:** Isolate and analyze specific payment methods
+
+### Section 3: Effective Filtering Strategies
+**Content:** Learn how to use filters effectively to find the data you need.
+
+**Example: Multi-Filter Approach**
+- **Scenario:** Using multiple filters to narrow down data
+- **Filter Steps:**
+  1. Date Range: Specific time period (Start with relevant time frame)
+  2. Payment Method: Specific payment types (Add payment method filter)
+  3. Amount Range: Transaction size filter (Filter by transaction amount)
+  4. Location: Specific business location (Filter by location if applicable)
+- **Result:** Combine multiple filters for precise data analysis
+
+### Section 4: Common Navigation Use Cases
+**Content:** Explore common scenarios where you need to navigate from summary to details.
+
+#### Investigating Discrepancies
+- **Scenario:** When summary numbers don't match expectations
+- **Investigation Steps:**
+  1. Identify Issue: Summary shows unexpected numbers (Notice discrepancy in summary data)
+  2. Filter by Time: Narrow to specific time period (Focus on when issue occurred)
+  3. Check Payment Methods: Look at payment method breakdown (See if specific payment methods are affected)
+  4. Review Transactions: Examine individual transactions (Find specific transactions causing the issue)
+- **Result:** Systematic approach to finding root cause of discrepancies
+
+#### Performance Analysis
+- **Scenario:** Understanding business performance patterns
+- **Analysis Steps:**
+  1. High-Level Trends: Monthly/weekly performance (Start with broad performance view)
+  2. Peak Identification: Find high-performing periods (Identify peak performance times)
+  3. Drill into Peaks: Analyze high-performing days/hours (Understand what drove good performance)
+  4. Transaction Analysis: Look at individual high-value transactions (Identify specific successful transactions)
+- **Result:** Understand what drives business performance
+
+### Frequently Asked Questions
+
+**Q: What filters are available for drilling down into transaction data?**
+A: Common filters include date range, payment method, transaction amount, location, item categories, and staff members.
+- Examples: Date range: Last 30 days, specific week, custom range; Payment method: Credit cards, cash, gift cards, etc.; Amount: Transactions over $50, under $10, etc.; Location: Specific store locations for multi-location businesses
+
+**Q: Can I export the detailed transaction data after filtering?**
+A: Yes, most reporting systems allow you to export filtered transaction data to CSV or Excel formats for further analysis.
+- Examples: Export to CSV for spreadsheet analysis, Export to Excel with formatting, Export specific columns only, Export with applied filters maintained
+
+**Q: Are there limits to how much detail I can access?**
+A: While you can drill down to individual transactions, there may be limits on date ranges, export sizes, or data retention periods.
+- Examples: Date range limits: Usually 1-2 years of historical data, Export limits: Maximum number of transactions per export, Detail level: Individual line items vs transaction totals, Real-time vs batch processing delays
+
+**Q: What should I do if I find discrepancies between summary and detail data?**
+A: Check for timing differences, filter settings, data processing delays, or contact support if the discrepancy persists.
+- Examples: Timing: Summary vs detail may use different time ranges, Filters: Ensure consistent filter settings, Processing: Allow time for data processing, Support: Document specific discrepancies for support team
+
+---
+
+## Payment Scenarios Reference
+
+### Standard Scenarios
+1. **Sale with Single Payment** - Standard transaction with one payment method
+2. **Credit Card Processing Delay** - Unintentional delays due to server-side processing
+3. **Cash Payment System Issue** - Internal system failure affecting payment record timing
+
+### Edge Cases
+4. **Pre-Authorization** - Intentional separation of auth and capture times
+5. **Tipping on Paper Receipts** - Intentional delay for paper receipts and reopen checks
+6. **Offline Payments** - Payments taken offline and synced later
+7. **ACH Payments** - Bank transfer payments with processing delays
+
+### Complex Scenarios
+8. **Sale with Split Payments** - Multiple payment methods for single sale
+9. **Sale with Multiple Payments via Invoice** - Invoice paid in multiple installments
+10. **House Account** - Credit account payments
+
+---
+
+## Interactive Features Available
+
+### Calculators
+- **Gross Sales Calculator** - Calculate Price + Service Charges
+- **Net Sales Calculator** - Calculate Gross Sales - Discounts - Comps - Returns
+- **Total Line Item Calculator** - Calculate Net Sales - Partial Refunds + Tax
+
+### Visualizations
+- **Sales Metrics Calculation Flow** - Flowchart showing metric relationships
+- **Payment Processing Timeline** - Timeline of when different metrics are reported
+- **Sales vs Payments Timing Comparison** - Side-by-side comparison chart
+- **Navigation Flow Diagram** - Visual guide for drilling down into data
+
+---
+
+## Content Structure Notes
+
+### Module Organization
+- Each module has a clear difficulty level and estimated duration
+- Sections are organized from basic concepts to advanced scenarios
+- Examples include realistic business scenarios with step-by-step calculations
+- FAQs address common user questions with practical examples
+
+### Interactive Elements
+- Calculators allow users to input their own values
+- Examples show both the calculation steps and the business context
+- Visualizations help users understand complex timing relationships
+- Navigation guides provide practical step-by-step instructions
+
+### User Experience Considerations
+- Content progresses from simple to complex concepts
+- Real-world scenarios help users relate to their business situations
+- Multiple examples for each concept reinforce learning
+- FAQs anticipate and address common confusion points
