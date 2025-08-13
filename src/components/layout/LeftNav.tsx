@@ -18,7 +18,11 @@ import {
   Bell,
   MessageCircle,
   HelpCircle,
-  User
+  User,
+  Bot,
+  GraduationCap,
+  TrendingUp,
+  Activity
 } from 'lucide-react';
 import { cn } from '../../utils/cn';
 
@@ -34,6 +38,7 @@ interface SubMenuItem {
   id: string;
   label: string;
   hasSubmenu?: boolean;
+  submenuItems?: SubMenuItem[];
 }
 
 const mainNavItems: NavItem[] = [
@@ -63,52 +68,95 @@ const mainNavItems: NavItem[] = [
   { id: 'invoices', label: 'Invoices & payments', icon: FileText },
   { id: 'online', label: 'Online', icon: Globe },
   { id: 'customers', label: 'Customers', icon: CreditCard },
-  { id: 'reports', label: 'Reports', icon: BarChart3 },
+  { 
+    id: 'financial-suite', 
+    label: 'Financial Suite', 
+    icon: BarChart3,
+    hasSubmenu: true,
+    submenuItems: [
+      { id: 'financial-dashboard', label: 'Dashboard' },
+      { id: 'deferred-sales', label: 'Deferred Sales' },
+      { 
+        id: 'reports', 
+        label: 'Reports', 
+        hasSubmenu: true,
+        submenuItems: [
+          { id: 'sales-summary', label: 'Sales summary' },
+          { id: 'sales-by-location', label: 'Sales by location' },
+          { id: 'sales-by-time', label: 'Sales by time' },
+          { id: 'sales-by-category', label: 'Sales by category' },
+          { id: 'sales-by-item', label: 'Sales by item' },
+          { id: 'discounts-comps', label: 'Discounts & comps' },
+          { id: 'taxes', label: 'Taxes' },
+          { id: 'payments', label: 'Payments' },
+          { id: 'cash-drawer', label: 'Cash drawer' },
+          { id: 'deposits', label: 'Deposits' },
+          { id: 'employee-timecards', label: 'Employee timecards' },
+          { id: 'gratuity', label: 'Gratuity' },
+          { id: 'items-sold', label: 'Items sold' },
+          { id: 'modifier-sold', label: 'Modifier sold' },
+          { id: 'customer-directory', label: 'Customer directory' }
+        ]
+      },
+      { id: 'custom-reports', label: 'Custom Reports' },
+      { id: 'migration-status', label: 'Migration Status' }
+    ]
+  },
   { id: 'staff', label: 'Staff', icon: Users },
   { id: 'money', label: 'Money', icon: Building2 },
+  { id: 'education', label: 'Education', icon: GraduationCap },
   { id: 'settings', label: 'Settings', icon: Settings },
   { id: 'add-more', label: 'Add more', icon: Grid3X3 }
 ];
 
 export function LeftNav() {
-  const [activeItem, setActiveItem] = useState<string | null>(null);
-  const [isSubmenuOpen, setIsSubmenuOpen] = useState(false);
-  const [expandedSubmenuItems, setExpandedSubmenuItems] = useState<string[]>(['items-main']);
+  const [currentView, setCurrentView] = useState<string>('main'); // 'main' or item.id for submenu view
+  const [expandedSubmenuItems, setExpandedSubmenuItems] = useState<string[]>([]);
   const navigate = useNavigate();
   const location = useLocation();
 
   const handleMainItemClick = (item: NavItem) => {
     if (item.hasSubmenu) {
-      // Always open submenu with left-to-right animation when clicking main item
-      setActiveItem(item.id);
-      setIsSubmenuOpen(true);
+      // Switch to submenu view
+      setCurrentView(item.id);
     } else {
-      setActiveItem(item.id);
-      setIsSubmenuOpen(false);
-      
       // Navigate to routes for main items
       if (item.id === 'home') {
         navigate('/');
+      } else if (item.id === 'reports') {
+        navigate('/reports');
+      } else if (item.id === 'education') {
+        navigate('/education');
       }
     }
   };
 
-  const handleSubmenuItemClick = (subItem: SubMenuItem) => {
+  const handleSubmenuItemClick = (subItem: SubMenuItem, parentId: string) => {
     if (subItem.hasSubmenu) {
       toggleSubmenuItem(subItem.id);
     } else {
       // Navigate to specific routes based on submenu items
       if (subItem.id === 'items-main') {
         navigate('/items');
-        // Close submenu after navigation
-        setIsSubmenuOpen(false);
+      } else if (subItem.id === 'financial-dashboard') {
+        navigate('/financial-suite');
+      } else if (subItem.id === 'deferred-sales') {
+        navigate('/deferred-sales');
+      } else if (subItem.id === 'reports') {
+        // This will show the reports submenu
+        toggleSubmenuItem(subItem.id);
+      } else if (subItem.id === 'custom-reports') {
+        navigate('/financial-suite/custom-reports');
+      } else if (subItem.id === 'migration-status') {
+        navigate('/migration-status');
+      } else if (subItem.id === 'sales-summary') {
+        navigate('/financial-suite/reports/sales-summary');
       }
     }
   };
 
   const handleBackClick = () => {
-    // Close submenu with right-to-left animation
-    setIsSubmenuOpen(false);
+    setCurrentView('main');
   };
 
   const toggleSubmenuItem = (itemId: string) => {
@@ -119,7 +167,7 @@ export function LeftNav() {
     );
   };
 
-  const activeNavItem = mainNavItems.find(item => item.id === activeItem);
+  const currentNavItem = mainNavItems.find(item => item.id === currentView);
 
   return (
     <div className="relative w-64 h-screen bg-gray-50 border-r border-gray-200 flex flex-col">
@@ -137,25 +185,27 @@ export function LeftNav() {
 
       {/* Main Navigation */}
       <div className="flex-1 overflow-hidden relative">
-        {/* Main Menu */}
+        {/* Main Menu View */}
         <div 
           className={cn(
             "absolute inset-0 transition-transform duration-300 ease-in-out",
-            isSubmenuOpen ? "-translate-x-full" : "translate-x-0"
+            currentView !== 'main' ? "-translate-x-full" : "translate-x-0"
           )}
         >
           <div className="py-2 h-full overflow-y-auto">
             {mainNavItems.map((item) => {
               const Icon = item.icon;
-              // Determine if item is active based on current route and navigation state
-              let isActive = false;
               
+              // Determine if item is active based on current route
+              let isActive = false;
               if (item.id === 'home') {
                 isActive = location.pathname === '/';
               } else if (item.id === 'items') {
-                isActive = location.pathname === '/items' || activeItem === 'items';
-              } else {
-                isActive = activeItem === item.id;
+                isActive = location.pathname === '/items' || location.pathname.startsWith('/items');
+              } else if (item.id === 'reports') {
+                isActive = location.pathname.startsWith('/reports');
+              } else if (item.id === 'education') {
+                isActive = location.pathname.startsWith('/education');
               }
               
               return (
@@ -177,12 +227,12 @@ export function LeftNav() {
           </div>
         </div>
 
-        {/* Submenu */}
-        {activeNavItem?.hasSubmenu && (
+        {/* Submenu View */}
+        {currentNavItem?.hasSubmenu && (
           <div 
             className={cn(
-              "absolute inset-0 transition-transform duration-300 ease-in-out bg-gray-100",
-              isSubmenuOpen ? "translate-x-0" : "translate-x-full"
+              "absolute inset-0 transition-transform duration-300 ease-in-out bg-gray-50",
+              currentView === currentNavItem.id ? "translate-x-0" : "translate-x-full"
             )}
           >
             <div className="h-full overflow-y-auto">
@@ -195,20 +245,22 @@ export function LeftNav() {
                   >
                     <ChevronLeft className="h-5 w-5 text-gray-600" />
                   </button>
-                  <h2 className="font-medium text-gray-900">{activeNavItem.label}</h2>
+                  <h2 className="font-medium text-gray-900">{currentNavItem.label}</h2>
                 </div>
               </div>
 
               {/* Submenu Items */}
               <div className="py-2">
-                {activeNavItem.submenuItems?.map((subItem) => (
+                {currentNavItem.submenuItems?.map((subItem) => (
                   <div key={subItem.id}>
                     <button
-                      onClick={() => handleSubmenuItemClick(subItem)}
+                      onClick={() => handleSubmenuItemClick(subItem, currentNavItem.id)}
                       className={cn(
                         "w-full flex items-center justify-between px-4 py-2.5 text-left transition-colors font-normal",
-                        subItem.id === 'items-main' 
-                          ? "text-blue-600" 
+                        (subItem.id === 'items-main' && location.pathname === '/items') ||
+                        (subItem.id === 'deferred-sales' && location.pathname === '/deferred-sales') ||
+                        (subItem.id === 'sales-summary' && location.pathname === '/reports/sales-summary')
+                          ? "text-blue-600 bg-blue-100" 
                           : "text-gray-700 hover:bg-gray-100"
                       )}
                     >
@@ -221,6 +273,26 @@ export function LeftNav() {
                         )
                       )}
                     </button>
+                    
+                    {/* Nested submenu items if expanded */}
+                    {subItem.hasSubmenu && expandedSubmenuItems.includes(subItem.id) && (
+                      <div className="bg-gray-100">
+                        {subItem.submenuItems?.map((nestedItem) => (
+                          <button
+                            key={nestedItem.id}
+                            onClick={() => handleSubmenuItemClick(nestedItem, subItem.id)}
+                            className={cn(
+                              "w-full flex items-center px-8 py-2 text-left transition-colors font-normal text-sm",
+                              nestedItem.id === 'sales-summary' && location.pathname.includes('sales-summary')
+                                ? "text-blue-600 bg-blue-100" 
+                                : "text-gray-700 hover:bg-gray-200"
+                            )}
+                          >
+                            <span>{nestedItem.label}</span>
+                          </button>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 ))}
               </div>
